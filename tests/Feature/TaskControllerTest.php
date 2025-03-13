@@ -78,4 +78,16 @@ class TaskControllerTest extends TestCase
             'completed_at' => now(),
         ]);
     }
+
+    public function test_task_is_deleted_when_delete_button_is_clicked()
+    {
+        $task = Task::factory()->create();
+
+        $response = $this->delete("/tasks/{$task->id}");
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseMissing('tasks', [
+            'id' => $task->id,
+        ]);
+    }
 }

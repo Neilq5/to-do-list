@@ -74,7 +74,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->completed_at = now();
+        $task->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -85,6 +89,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return redirect()->back();
     }
 }
