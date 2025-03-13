@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', TaskController::class)->only('index', 'store', 'update', 'destroy');
+Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
+Route::resource('tasks', TaskController::class)->only('store', 'update', 'destroy');

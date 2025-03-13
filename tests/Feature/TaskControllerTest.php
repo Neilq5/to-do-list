@@ -30,7 +30,7 @@ class TaskControllerTest extends TestCase
 
     public function test_validation_error_is_returned_when_task_name_is_empty()
     {
-        $response = $this->post('/', [
+        $response = $this->post('/tasks', [
             'name' => '',
         ]);
 
@@ -39,7 +39,7 @@ class TaskControllerTest extends TestCase
 
     public function test_validation_error_is_returned_when_task_name_more_than_255_characters()
     {
-        $response = $this->post('/', [
+        $response = $this->post('/tasks', [
             'name' => Str::random(256),
         ]);
 
@@ -48,7 +48,7 @@ class TaskControllerTest extends TestCase
 
     public function test_task_is_created_when_valid_name_is_provided()
     {
-        $response = $this->post('/', [
+        $response = $this->post('/tasks', [
             'name' => 'Test Task',
         ]);
 
@@ -56,6 +56,26 @@ class TaskControllerTest extends TestCase
         $response->assertSessionHas('success', 'Task created successfully');
         $this->assertDatabaseHas('tasks', [
             'name' => 'Test Task',
+        ]);
+    }
+
+    public function test_not_found_status_is_returned_when_task_is_not_found()
+    {
+        $response = $this->put('/tasks/999');
+        $response->assertStatus(404);
+    }
+
+    public function test_task_is_completed_when_complete_button_is_clicked()
+    {
+        $this->freezeTime();
+        $task = Task::factory()->create();
+
+        $response = $this->put("/tasks/{$task->id}");
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            'completed_at' => now(),
         ]);
     }
 }
