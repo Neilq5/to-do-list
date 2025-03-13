@@ -25,8 +25,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Insert task name">
-                    <button class="submit-btn btn btn-primary btn-block">Add</button>
+                    <form action="/" method="post">
+                        @csrf
+                        <input name="name" type="text" class="form-control" placeholder="Insert task name">
+                        @error('name')
+                            <div class="alert alert-danger">
+                                <span class="text-danger">{{ $message }}</span>
+                            </div>
+                        @enderror
+                        <button class="submit-btn btn btn-primary btn-block">Add</button>
+                    </form>
                 </div>
                 <div class="col-md-8">
                     <div class="container-fluid bg-white task-list-container">
