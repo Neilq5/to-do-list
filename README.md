@@ -1,3 +1,16 @@
+## My Notes
+
+This is my implementation of the below project spec.  
+
+Beyond the below requirements, I've added the following:
+- Pagination: Tasks are paginated at 20 tasks per page.
+- Test coverage for task routes.
+
+To run the tests:
+```bash
+php artisan test
+```
+
 ## MLP To-DO - Instructions
 
 You must demonstrate the following abilities/skills: make models, controllers, migrations, HTML, CSS, blade, Git commits, blade templates, etc. 
