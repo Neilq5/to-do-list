@@ -41,7 +41,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        @foreach ($tasks as $task)
+                                            <tr>
+                                                <td>{{ $task->id }}</td>
+                                                <td @if($task->completed_at) style="text-decoration: line-through;" @endif>{{ $task->name }}</td>
+                                                <td>
+                                                    <button class="btn btn-success btn-add-task" data-task-id="{{ $task->id }}">
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    </button>
+                                                    <button class="btn btn-danger btn-delete-task" data-task-id="{{ $task->id }}">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>      
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
