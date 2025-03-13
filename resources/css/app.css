@@ -1,0 +1,49 @@
+body {
+    background-color: #f3f3f3;
+    font-family: 'Lato', sans-serif;
+    min-width: 320px;
+}
+
+header {
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.submit-btn {
+    margin-top: 15px;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.task-list-container {
+    padding: 20px 15px 0px 15px;
+}
+
+th {
+    font-weight: bold;
+}
+
+.table th:first-child,
+.table td:first-child {
+    width: 50px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.row-actions-container {
+    display: flex;
+    gap: 5px;
+}
+
+footer {
+    margin-top: 130px;
+    color: #333;
+}
