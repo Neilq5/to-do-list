@@ -20,12 +20,12 @@ class TaskControllerTest extends TestCase
         $response->assertViewIs('tasks');
     }
 
-    public function test_view_passes_all_tasks_to_view()
+    public function test_view_passes_paginated_tasks_to_view()
     {
-        $tasks = Task::factory()->count(3)->create();
+        Task::factory()->count(3)->create();
 
         $response = $this->get('/');
-        $response->assertViewHas('tasks', $tasks);
+        $response->assertViewHas('tasks', Task::query()->paginate(20));
     }
 
     public function test_validation_error_is_returned_when_task_name_is_empty()
